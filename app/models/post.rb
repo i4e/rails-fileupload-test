@@ -1,10 +1,11 @@
 class Post < ApplicationRecord
-  attr_accessor :picture_file
+  validates :image_path, presence: true
+
+  attr_accessor :image
   before_validation :pic_to_path
 
   private
   def pic_to_path
-    binding.pry
-    self.image_path = picture_file.original_filename
+    self.image_path = image.original_filename
   end
 end
